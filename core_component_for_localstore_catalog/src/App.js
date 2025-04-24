@@ -41,7 +41,7 @@ const theme = createTheme({
     subtitle1: {
       fontSize: '1.1rem',
       lineHeight: 1.5,
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: '#666666',
     }
   },
   components: {
@@ -65,9 +65,8 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: '#1A1A1A',
+          backgroundColor: '#E87A41',
           boxShadow: 'none',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
         }
       }
     }
@@ -122,7 +121,7 @@ function App() {
             </Typography>
             <Typography
               variant="subtitle1"
-              sx={{ maxWidth: '700px', mx: 'auto', mb: 4 }}
+              sx={{ maxWidth: '700px', mx: 'auto', mb: 4, color: 'text.primary' }}
             >
               Browse our selection of high-quality products at competitive prices
             </Typography>
