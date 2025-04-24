@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+}
+
+.product-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-price {
+  font-weight: 700;
+  color: #E87A41;
+}
+
+.product-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .product-grid {
+    padding: 0;
+  }
+}
