@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './contexts/CartContext';
 import {
   ThemeProvider,
   createTheme,
@@ -11,6 +13,7 @@ import {
   Toolbar
 } from '@mui/material';
 import ProductList from './components/ProductList';
+import Cart from './components/Cart';
 import products from './utils/ProductData';
 
 const theme = createTheme({
@@ -65,8 +68,8 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: '#E87A41',
-          boxShadow: 'none',
+          backgroundColor: '#333333', // Dark theme color
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         }
       }
     }
@@ -74,10 +77,12 @@ const theme = createTheme({
 });
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
 
+  return (
+    <BrowserRouter>
+      <CartProvider>
+        <ThemeProvider theme={theme}>
+        <CssBaseline />
       <AppBar position="fixed">
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
@@ -88,7 +93,8 @@ function App() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: 1,
-                fontWeight: 700
+                fontWeight: 700,
+                color: '#E87A41'
               }}
             >
               <span style={{ color: '#E87A41' }}>🛒</span> LocalStore
@@ -98,8 +104,9 @@ function App() {
             variant="contained"
             color="primary"
             sx={{ ml: 2 }}
+            onClick={() => window.location.href = '/cart'}
           >
-            View Cart
+            Cart
           </Button>
         </Toolbar>
       </AppBar>
@@ -127,10 +134,15 @@ function App() {
             </Typography>
           </Box>
           
-          <ProductList products={products} />
+          <Routes>
+            <Route path="/" element={<ProductList products={products} />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
         </Container>
       </Box>
-    </ThemeProvider>
+        </ThemeProvider>
+      </CartProvider>
+    </BrowserRouter>
   );
 }
 

@@ -5,8 +5,10 @@ import {
   CardMedia, 
   Typography, 
   Box,
-  CardActionArea
+
+  Button
 } from '@mui/material';
+import { useCart } from '../contexts/CartContext';
 
 /**
  * ProductCard component for displaying individual product information
@@ -14,6 +16,13 @@ import {
  * @param {Object} props.product - Product data object
  */
 const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    addToCart(product);
+  };
+
   return (
     <Card 
       sx={{ 
@@ -27,7 +36,6 @@ const ProductCard = ({ product }) => {
         }
       }}
     >
-      <CardActionArea>
         <CardMedia
           component="img"
           height="200"
@@ -46,9 +54,16 @@ const ProductCard = ({ product }) => {
             <Typography variant="h6" color="primary" sx={{ fontWeight: 600 }}>
               ${product.price.toFixed(2)}
             </Typography>
+            <Button 
+              variant="contained" 
+              color="primary"
+              onClick={handleAddToCart}
+              sx={{ ml: 'auto' }}
+            >
+              Add to Cart
+            </Button>
           </Box>
         </CardContent>
-      </CardActionArea>
     </Card>
   );
 };
